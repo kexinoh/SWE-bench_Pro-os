@@ -20,3 +20,9 @@ def test_attempt_workspaces_are_independent(tmp_path):
     assert existing == {"resolved": True}
     assert existing_output == output_a
     assert existing_workspace == workspace_a
+
+
+def test_prepare_run_preserves_default_workspace_name(tmp_path):
+    _, _, workspace = prepare_run("instance", tmp_path, "", False)
+
+    assert workspace == str(tmp_path / "instance" / "workspace")
